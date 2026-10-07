@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KI – Nutzen und Risiken abwägen</title>
+  <style>
+    :root { color-scheme: light; font-family: Arial, Helvetica, sans-serif; color: #000; background: #f3f6f7; line-height: 1.65; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { max-width: 980px; margin: auto; padding: 36px 24px 56px; }
+    header { padding: 0 0 22px; }
+    .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin: 0 0 9px; }
+    h1 { font-size: clamp(28px, 4vw, 40px); line-height: 1.2; margin: 0 0 17px; letter-spacing: -.025em; }
+    h2 { font-size: clamp(22px, 3vw, 27px); line-height: 1.3; margin: 0 0 17px; }
+    h3 { font-size: 18px; line-height: 1.4; margin: 20px 0 8px; }
+    p { margin: 0 0 14px; }
+    p:last-child { margin-bottom: 0; }
+    a, summary { color: #000; }
+    a { text-underline-offset: 3px; }
+    a:focus-visible, summary:focus-visible { outline: 3px solid #000; outline-offset: 5px; }
+    .skip { position: absolute; left: -10000px; }
+    .skip:focus { position: static; display: block; padding: 12px; background: #fff; }
+    .lead { max-width: 78ch; font-size: 18px; }
+    .guide { padding: 17px 20px; border-left: 4px solid #86aac0; background: #e7f1f7; margin: 20px 0 0; font-size: 15px; }
+    nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+    nav a { display: inline-block; border: 1px solid #a9bac4; border-radius: 7px; padding: 8px 13px; background: #fff; font-size: 14px; text-decoration: none; }
+    nav a:hover { background: #e7f1f7; text-decoration: underline; }
+    section { background: #fff; border: 1px solid #ccd6dc; border-radius: 12px; padding: 28px; margin-bottom: 22px; scroll-margin-top: 18px; }
+    .case { border-top: 5px solid #91b7cb; }
+    .case-text { font-size: 17px; }
+    .tag { display: inline-block; padding: 2px 9px; border: 1px solid #c4d2da; border-radius: 5px; font-size: 12px; margin-bottom: 15px; }
+    .question { font-size: 19px; margin: 17px 0 0; }
+    .task { background: #f3f6f7; border-radius: 8px; padding: 17px 20px; margin: 16px 0; }
+    .task-title { font-size: 15px; margin-bottom: 6px; }
+    ol, ul { padding-left: 23px; margin: 9px 0 12px; }
+    li { margin: 7px 0; }
+    .task ol:last-child, .task ul:last-child { margin-bottom: 0; }
+    .table-wrap { overflow-x: auto; margin: 17px 0; }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 15px; }
+    caption { text-align: left; font-weight: 700; margin-bottom: 8px; }
+    th, td { border: 1px solid #c6d3db; padding: 12px 14px; vertical-align: top; }
+    th { background: #e7f1f7; }
+    tbody th { width: 29%; background: #f3f6f7; }
+    details { margin-top: 17px; border: 1px solid #b7c9c0; border-radius: 8px; background: #f3f7f4; }
+    summary { padding: 13px 17px; cursor: pointer; font-weight: 700; font-size: 15px; }
+    summary:hover { background: #e9f1ec; border-radius: 8px; }
+    .feedback { padding: 1px 19px 19px; }
+    .feedback h3:first-child { margin-top: 8px; }
+    .feedback p, .feedback li { font-size: 15px; }
+    .feedback .selfcheck { border-top: 1px solid #c6d4cb; padding-top: 13px; margin-top: 15px; }
+    .situations { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 17px 0; }
+    .situation { padding: 18px; border: 1px solid #bacbd5; border-radius: 8px; }
+    .situation h3 { margin: 0 0 10px; }
+    .sentence-starters { border-left: 3px solid #abbfc9; padding: 3px 0 3px 16px; margin: 13px 0; }
+    footer { border-top: 1px solid #bdcbd3; margin-top: 28px; padding-top: 19px; font-size: 15px; }
+    @media (max-width: 620px) {
+      main { padding: 23px 14px 35px; }
+      section { padding: 21px 17px; }
+      .situations { grid-template-columns: 1fr; }
+      th, td { padding: 9px; }
+      .task { padding: 15px; }
+    }
+    @media print {
+      :root, body { background: #fff; font-size: 11pt; }
+      main { padding: 0; max-width: none; }
+      nav, .skip { display: none; }
+      section { border: 0; border-radius: 0; padding: 12px 0; }
+      h1 { font-size: 24pt; } h2 { font-size: 17pt; }
+      h2, h3, summary { break-after: avoid; }
+      .situations, tr, .task { break-inside: avoid; }
+      p { orphans: 3; widows: 3; }
+    }
+  
+/* Gestaltung nach der Vorlage des Lernarchivs Informatik */
+:root { color-scheme: light; --ink: #000000; --paper: #ffffff; --bg: #c2e0f4; --line: #c2d9e7; --soft: #edf6fc; --accent: #c2e0f4; --radius: 0; background: #c2e0f4; color: #000000; }
+body { margin: 2rem 0; padding: 2.5rem 1.5rem; background: #c2e0f4; color: #000000; font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 1.65; }
+h1, h2, h3 { color: #1f3a4d; letter-spacing: normal; }
+h1 { font-size: clamp(25px, 3.2vw, 30px); line-height: 1.3; }
+h2 { font-size: clamp(21px, 2.6vw, 24px); line-height: 1.35; }
+h3 { font-size: 18px; line-height: 1.4; }
+a { color: #2c658c; text-decoration: underline; text-underline-offset: 3px; }
+a:hover { color: #1f3a4d; }
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid #1f3a4d; outline-offset: 4px; }
+.eyebrow { font-size: 12px; letter-spacing: .07em; }
+summary { color: #1f3a4d; }
+details { border: 1px solid #c2d9e7; border-radius: 0; background: #f5faff; }
+summary:hover { background: #e4f1fa; border-radius: 0; }
+footer { border-color: #c2d9e7; }
+
+main { max-width: 900px; margin: 0 auto; background: #ffffff; padding: 2rem 2.5rem; border-left: 6px solid #7BB6DD; box-sizing: border-box; }
+header { padding-bottom: 24px; }
+.lead { font-size: 17px; }
+.guide { background: #edf6fc; border-left: 4px solid #7BB6DD; }
+nav { padding: 0 0 24px; margin: 0; gap: 8px; }
+nav a { color: #1f3a4d; border-color: #aacce2; border-radius: 2px; background: #f5faff; }
+nav a:hover { background: #c2e0f4; }
+section { border: 0; border-top: 1px solid #c2d9e7; border-radius: 0; padding: 27px 0 9px; margin: 0 0 23px; background: #ffffff; }
+.case { border-top: 1px solid #c2d9e7; }
+.tag { border-color: #c2d9e7; border-radius: 0; background: #edf6fc; }
+.task { background: #edf6fc; border-left: 3px solid #7BB6DD; border-radius: 0; }
+.task-title { color: #1f3a4d; }
+th, td { border-color: #b7d2e3; }
+th { background: #dceefa; color: #1f3a4d; }
+tbody th { background: #f0f7fc; }
+.feedback .selfcheck { border-color: #c2d9e7; }
+.situation { border: 1px solid #c2d9e7; border-left: 3px solid #7BB6DD; border-radius: 0; background: #f5faff; }
+.sentence-starters { border-color: #7BB6DD; }
+@media (max-width: 620px) {
+  body { margin: 1rem 0; padding: 1.25rem .75rem; }
+  main { padding: 1.5rem 1rem; }
+  section { padding: 22px 0 4px; }
+  .situations { grid-template-columns: 1fr; }
+}
+@media print {
+  :root, body { background: #ffffff; }
+  body { margin: 0; padding: 0; }
+  main { max-width: none; border-left: 0; padding: 0; }
+  section { border: 0; padding: 12px 0; }
+  h1, h2, h3 { color: #000000; }
+}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#fall">Zum Fallbeispiel</a>
+<main>
+  <header>
+    <p class="eyebrow">KI – Nutzen vs. Risiken · Schritt 5</p>
+    <h1><strong>Nutzen und Risiken abwägen</strong></h1>
+    <p class="lead">Du hast Risiken von KI an konkreten Fällen untersucht. Jetzt beziehst du den möglichen Nutzen ein und prüfst, wie stark die einzelnen Argumente wiegen.</p>
+    <p class="question"><strong>Wie beurteilst du den Einsatz von KI in diesem Fall?</strong></p>
+    <div class="guide"><strong>So arbeitest du:</strong> Lies den Fall und bearbeite die vier Schritte. Notiere deine Antworten in deinem Heft oder einem eigenen Dokument. Öffne die Hinweise zur Selbstkontrolle jeweils nach deiner Bearbeitung. Unterschiedliche begründete Einschätzungen sind möglich.</div>
+  </header>
+
+  <nav aria-label="Arbeitsschritte">
+    <a href="#fall">Der Fall</a>
+    <a href="#schritt1">1. Perspektiven</a>
+    <a href="#schritt2">2. Wichtige Argumente</a>
+    <a href="#schritt3">3. Vergleich</a>
+    <a href="#schritt4">4. Einschätzung</a>
+  </nav>
+
+  <section class="case" id="fall" aria-labelledby="falltitel">
+    <span class="tag">Fiktives Fallbeispiel</span>
+    <h2 id="falltitel"><strong>Ein KI-Schreibassistent an der Schule</strong></h2>
+    <div class="case-text">
+      <p>Eine Schule möchte einen KI-Schreibassistenten einsetzen. Du kannst einen selbst verfassten Text hochladen und erhältst sofort Hinweise zu Aufbau, Verständlichkeit und Argumentation. Anschließend kannst du deinen Text überarbeiten.</p>
+      <p>Bisher erhältst du ausführliche Rückmeldungen vor allem von deiner Lehrkraft. Das braucht Zeit und ist nicht bei jedem Übungstext möglich. Die Lehrkräfte erhoffen sich, dass du mit dem Schreibassistenten häufiger Rückmeldungen erhältst und selbstständiger arbeiten kannst.</p>
+      <p>Bei einer Erprobung waren viele Hinweise hilfreich. Einige Rückmeldungen übersahen jedoch sachliche Fehler oder schlugen Änderungen vor, die die Aussage des Textes veränderten. Wie häufig solche Probleme auftreten, wurde bisher nicht systematisch untersucht. Auch ist noch offen, welche hochgeladenen Daten der Anbieter speichert.</p>
+    </div>
+  </section>
+
+  <section id="schritt1" aria-labelledby="titel1">
+    <p class="eyebrow">Schritt 1</p>
+    <h2 id="titel1"><strong>Unterschiedliche Perspektiven</strong></h2>
+    <p>Ein Angebot kann für verschiedene Personen unterschiedliche Vorteile und Nachteile haben. Betrachte deshalb sowohl deine Perspektive als lernende Person als auch die Perspektive der Lehrkräfte.</p>
+    <div class="task">
+      <p class="task-title"><strong>Dein Auftrag</strong></p>
+      <ol>
+        <li>Beschreibe für jede der beiden Perspektiven mindestens einen möglichen Vorteil und ein mögliches Risiko.</li>
+        <li>Erläutere jeweils, wie der Vorteil oder das Risiko entsteht. Beziehe dich auf den Fall.</li>
+        <li>Nenne bei einem Vorteil eine Bedingung, unter der er tatsächlich eintreten könnte.</li>
+      </ol>
+    </div>
+    <p>Du kannst deine Notizen so gliedern: <strong>Perspektive – Vorteil oder Risiko – Erklärung.</strong></p>
+    <details>
+      <summary>Hinweise zur Selbstkontrolle: Perspektiven</summary>
+      <div class="feedback">
+        <h3><strong>Mögliche Überlegungen</strong></h3>
+        <ul>
+          <li><strong>Für dich:</strong> Die sofortige Rückmeldung könnte dir helfen, während des Schreibens weiterzuarbeiten und mehr Texte zu überarbeiten. Ein Lerngewinn setzt voraus, dass du die Hinweise verstehst und dich mit ihnen auseinandersetzt.</li>
+          <li><strong>Für dich:</strong> Wenn du eine unpassende Änderung ungeprüft übernimmst, könnte dein Text eine andere Aussage erhalten. Übersehene Fehler könnten sich verfestigen.</li>
+          <li><strong>Für Lehrkräfte:</strong> Rückmeldungen zu häufigen Schreibproblemen könnten Arbeit abnehmen und Zeit für individuelle Unterstützung schaffen. Zusätzliche Prüfung und die Besprechung fehlerhafter Hinweise könnten allerdings auch Arbeit verursachen.</li>
+          <li><strong>Für dich und die Schule:</strong> Solange der Umgang mit hochgeladenen Texten ungeklärt ist, fehlt eine wichtige Grundlage für die Entscheidung über den Einsatz. Besonders bedeutsam wäre dies bei Texten mit persönlichen Angaben.</li>
+        </ul>
+        <p class="selfcheck"><strong>Prüfe deine Antwort:</strong> Hast du erklärt, wer auf welche Weise profitieren oder Nachteile erfahren könnte? Unterscheidest du erwartete Vorteile von bereits nachgewiesenen Verbesserungen?</p>
+      </div>
+    </details>
+  </section>
+
+  <section id="schritt2" aria-labelledby="titel2">
+    <p class="eyebrow">Schritt 2</p>
+    <h2 id="titel2"><strong>Was für dein Urteil wichtig ist</strong></h2>
+    <p>Die Anzahl der Vorteile und Risiken reicht für eine Abwägung nicht aus. Ein einzelnes Risiko mit schwerwiegenden Folgen kann stärker wiegen als mehrere kleine Vorteile. Auch ein erheblicher Nutzen verdient besonderes Gewicht.</p>
+    <div class="table-wrap">
+      <table>
+        <caption>Kriterien für deine Abwägung</caption>
+        <thead><tr><th scope="col">Gesichtspunkt</th><th scope="col">Leitfragen</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Bedeutung des Nutzens</th><td>Was verbessert sich gegenüber der bisherigen Vorgehensweise? Für wen ist diese Verbesserung besonders wichtig?</td></tr>
+          <tr><th scope="row">Ausmaß möglicher Nachteile</th><td>Welche Folgen könnte ein Fehler haben? Wie schwer wären die Betroffenen dadurch beeinträchtigt?</td></tr>
+          <tr><th scope="row">Häufigkeit und Unsicherheit</th><td>Was weißt du darüber, wie häufig hilfreiche oder fehlerhafte Rückmeldungen auftreten? Welche Informationen fehlen?</td></tr>
+          <tr><th scope="row">Erkennbarkeit und Korrigierbarkeit</th><td>Wer könnte einen Fehler bemerken? Ließen sich seine Folgen korrigieren?</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="task">
+      <p class="task-title"><strong>Dein Auftrag</strong></p>
+      <ol>
+        <li>Wähle aus deinen Notizen einen besonders wichtigen Vorteil und ein besonders wichtiges Risiko aus.</li>
+        <li>Begründe mithilfe passender Kriterien aus der Tabelle, warum du gerade diesen beiden Argumenten großes Gewicht gibst.</li>
+        <li>Formuliere eine Frage, die vor einer verlässlicheren Einschätzung noch geklärt werden müsste.</li>
+      </ol>
+    </div>
+    <p><strong>Du musst keine Häufigkeiten schätzen.</strong> Wenn Angaben fehlen, benenne diese Unsicherheit. Erkläre, weshalb die fehlende Information für deine Abwägung wichtig ist.</p>
+    <details>
+      <summary>Hinweise zur Selbstkontrolle: Wichtige Argumente</summary>
+      <div class="feedback">
+        <p>Eine nachvollziehbare Gewichtung verbindet ein Argument mit seiner Bedeutung im konkreten Fall. Zum Beispiel:</p>
+        <ul>
+          <li><strong>Nutzen:</strong> „Häufigere Rückmeldungen wiegen für mich besonders schwer, weil bisher nicht jeder Übungstext ausführlich besprochen werden kann. Entscheidend wäre, ob ich dadurch meine Texte selbstständiger verbessern lerne.“</li>
+          <li><strong>Risiko:</strong> „Sinnverändernde Vorschläge wiegen für mich besonders schwer, weil ich sie möglicherweise gerade dann nicht erkenne, wenn ich bei einer Formulierung unsicher bin.“</li>
+        </ul>
+        <p>Im Fall fehlen verlässliche Angaben zur Häufigkeit problematischer Rückmeldungen. Aus „viele Hinweise waren hilfreich“ lässt sich keine genaue Fehlerquote ableiten. Ebenso ist eine tatsächliche Verbesserung der Schreibkompetenz noch nicht belegt.</p>
+        <p>Eine weiterführende Frage wäre: „Erkennen Schülerinnen und Schüler unpassende Vorschläge, und hängt das von ihrer bisherigen Schreibkompetenz ab?“ Auch Fragen zum Lerngewinn, zum Arbeitsaufwand oder zur Datenspeicherung können für dein Urteil entscheidend sein.</p>
+        <p class="selfcheck"><strong>Prüfe deine Antwort:</strong> Wird deutlich, warum ein Argument für dich wichtig ist? Hast du Unsicherheiten kenntlich gemacht, statt fehlende Informationen als Tatsachen zu behandeln?</p>
+      </div>
+    </details>
+  </section>
+
+  <section id="schritt3" aria-labelledby="titel3">
+    <p class="eyebrow">Schritt 3</p>
+    <h2 id="titel3"><strong>Zwei Einsatzmöglichkeiten</strong></h2>
+    <p>Die Schule diskutiert zwei Einsatzmöglichkeiten desselben Schreibassistenten. Die beschriebenen Unsicherheiten gelten weiterhin. Vergleiche, welche Bedeutung sie in den beiden Situationen haben.</p>
+    <div class="situations">
+      <div class="situation">
+        <h3><strong>Situation A: KI bei Übungstexten</strong></h3>
+        <p>Du nutzt die Hinweise, um einen Übungstext zu überarbeiten. Du entscheidest, welche Vorschläge du übernimmst. Der Text und die KI-Rückmeldung werden nicht benotet.</p>
+      </div>
+      <div class="situation">
+        <h3><strong>Situation B: KI bei der Benotung</strong></h3>
+        <p>Die Lehrkraft nutzt die Rückmeldung zu einem Text, der benotet wird. Der Schreibassistent schlägt zusätzlich eine Note vor. Die Lehrkraft prüft den Text und den Vorschlag und entscheidet über die Bewertung.</p>
+      </div>
+    </div>
+    <div class="task">
+      <p class="task-title"><strong>Dein Auftrag</strong></p>
+      <ol>
+        <li>Vergleiche den möglichen Nutzen in beiden Situationen: Wer profitiert jeweils und wodurch?</li>
+        <li>Erläutere an einem möglichen Fehler, wie sich seine Folgen in Situation A und B unterscheiden könnten.</li>
+        <li>Erkläre, wie die Prüfung durch die Lehrkraft deine Einschätzung von Situation B beeinflusst. Wovon hängt es ab, ob diese Prüfung wirksam ist?</li>
+      </ol>
+    </div>
+    <details>
+      <summary>Hinweise zur Selbstkontrolle: Vergleich</summary>
+      <div class="feedback">
+        <p><strong>In Situation A</strong> steht die Unterstützung beim Lernen im Vordergrund. Eine unpassende Rückmeldung könnte deinen Lernprozess beeinträchtigen. Es entsteht jedoch nicht unmittelbar eine Note daraus. Wie gut du Fehler erkennst oder später korrigieren kannst, bleibt wichtig.</p>
+        <p><strong>In Situation B</strong> könnte der Vorschlag die Lehrkraft bei der Bewertung unterstützen. Eine fehlerhafte Einschätzung könnte sich zugleich auf deine Note auswirken, wenn sie bei der Prüfung unbemerkt bleibt. Deshalb erhalten Zuverlässigkeit und die Folgen eines Fehlers hier zusätzliches Gewicht. Ob das System geeignete Notenvorschläge liefert, wurde im Fall nicht untersucht.</p>
+        <p><strong>Die Prüfung durch die Lehrkraft</strong> kann Fehler auffangen. Entscheidend ist unter anderem, ob sie den Text anhand nachvollziehbarer Kriterien eigenständig beurteilt, genügend Zeit hat und vom KI-Vorschlag abweicht, wenn dieser nicht passt. Der mögliche Zeitgewinn hängt auch vom Aufwand dieser Prüfung ab.</p>
+        <p><strong>Die Frage der Datenspeicherung</strong> bleibt in beiden Situationen relevant. Eine menschliche Prüfung des Inhalts beantwortet diese Frage noch nicht.</p>
+        <p class="selfcheck"><strong>Prüfe deine Antwort:</strong> Hast du die Folgen desselben Fehlers in beiden Situationen verglichen? Erklärst du, unter welchen Bedingungen menschliche Kontrolle helfen kann?</p>
+      </div>
+    </details>
+  </section>
+
+  <section id="schritt4" aria-labelledby="titel4">
+    <p class="eyebrow">Schritt 4</p>
+    <h2 id="titel4"><strong>Deine vorläufige Einschätzung</strong></h2>
+    <p>Kehre zu <strong>Situation A</strong> zurück: dem Schreibassistenten als Rückmeldewerkzeug für unbenotete Übungstexte.</p>
+    <div class="task">
+      <p class="task-title"><strong>Dein Auftrag</strong></p>
+      <p>Formuliere in etwa fünf bis sieben Sätzen eine vorläufige Einschätzung. Nenne dein stärkstes Argument und einen wichtigen Einwand. Erkläre, wie du beides gegeneinander gewichtest. Benenne außerdem eine zusätzliche Information, die deine Einschätzung verändern könnte.</p>
+    </div>
+    <p>Du kannst den Einsatz für sinnvoll halten, ihn an Bedingungen knüpfen, vorläufig ablehnen oder dein Urteil bis zur Klärung wichtiger Fragen zurückstellen. Begründe deine Einschätzung anhand des Falls.</p>
+    <details>
+      <summary>Formulierungshilfe bei Bedarf</summary>
+      <div class="feedback">
+        <div class="sentence-starters">
+          <p>„Für den Einsatz bei Übungstexten spricht aus meiner Sicht vor allem …, weil …“</p>
+          <p>„Ein wichtiger Einwand ist … Dieser wiegt für mich …, weil …“</p>
+          <p>„Insgesamt komme ich vorläufig zu der Einschätzung …“</p>
+          <p>„Meine Einschätzung könnte sich ändern, wenn sich herausstellt, dass …“</p>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary>Hinweise zur Selbstkontrolle: Deine Einschätzung</summary>
+      <div class="feedback">
+        <p>Für diese Aufgabe gibt es kein einziges vorgegebenes Urteil. Prüfe deine Begründung anhand der folgenden Fragen:</p>
+        <ul>
+          <li>Bezieht sich meine Einschätzung auf Rückmeldungen zu unbenoteten Übungstexten?</li>
+          <li>Habe ich sowohl den möglichen Nutzen als auch ein wichtiges Risiko berücksichtigt?</li>
+          <li>Wird deutlich, weshalb ich einem Argument mehr Gewicht gebe?</li>
+          <li>Unterscheide ich Angaben aus dem Fall von Erwartungen und offenen Fragen?</li>
+          <li>Erkläre ich konkret, welche neue Information mein Urteil in welche Richtung verändern könnte?</li>
+        </ul>
+        <p>Eine Begründung kann beispielsweise häufigere Lerngelegenheiten stark gewichten. Eine andere kann die noch ungeklärte Qualität der Rückmeldungen oder die Datenspeicherung für ausschlaggebend halten. Entscheidend sind der Bezug zum Fall und eine nachvollziehbare Gewichtung.</p>
+        <p class="selfcheck"><strong>Überarbeite deine Einschätzung</strong>, wenn eine wichtige Begründung oder eine offene Frage bisher fehlt.</p>
+      </div>
+    </details>
+  </section>
+
+  <footer>
+    <p><strong>Wie geht es weiter?</strong> Im nächsten Reiter untersuchst du Handlungsoptionen: Wie lassen sich Risiken begrenzen, und wer trägt dafür Verantwortung? Diese Überlegungen helfen dir später, den Einsatz von KI in einem konkreten Fall begründet zu beurteilen.</p>
+  </footer>
+</main>
+</body>
+</html>
